@@ -3,6 +3,7 @@ import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import { Alert, Button, Layout, Spin, Table } from 'antd'
 import AddBook from './components/add-book/AddBook'
+import UpdateBook from './components/update-book/UpdateBook'
 import './App.css'
 
 class App extends Component {
@@ -52,7 +53,7 @@ const columns = [
     key: 'action',
     render: (text, record) => (
       <div>
-        <Button size="small">Update</Button>
+        <UpdateBook book={record} />
         <Button size="small" type="danger">{record.id}</Button>
       </div>
     ),
