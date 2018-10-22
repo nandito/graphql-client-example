@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
-import { Alert, Layout, Spin, Table } from 'antd'
+import { Alert, Button, Layout, Spin, Table } from 'antd'
 import AddBook from './components/add-book/AddBook'
 import './App.css'
 
@@ -31,19 +31,33 @@ class App extends Component {
   }
 }
 
-const columns = [{
-  title: 'Author',
-  dataIndex: 'author',
-  key: 'author',
-}, {
-  title: 'Title',
-  dataIndex: 'title',
-  key: 'title',
-}, {
-  title: 'Id',
-  dataIndex: 'id',
-  key: 'id',
-}]
+const columns = [
+  {
+    title: 'Author',
+    dataIndex: 'author',
+    key: 'author',
+  },
+  {
+    title: 'Title',
+    dataIndex: 'title',
+    key: 'title',
+  },
+  {
+    title: 'Id',
+    dataIndex: 'id',
+    key: 'id',
+  },
+  {
+    title: 'Action',
+    key: 'action',
+    render: (text, record) => (
+      <div>
+        <Button size="small">Update</Button>
+        <Button size="small" type="danger">{record.id}</Button>
+      </div>
+    ),
+  },
+]
 
 const Books = () => (
   <Query query={GET_BOOKS}>
