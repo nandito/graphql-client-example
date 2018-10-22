@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
-import { Alert, Button, Layout, Spin, Table } from 'antd'
+import { Alert, Layout, Spin, Table } from 'antd'
 import AddBook from './components/add-book/AddBook'
 import UpdateBook from './components/update-book/UpdateBook'
+import DeleteBook from './components/delete-book/DeleteBook'
 import './App.css'
 
 class App extends Component {
@@ -54,7 +55,7 @@ const columns = [
     render: (text, record) => (
       <div>
         <UpdateBook book={record} />
-        <Button size="small" type="danger">{record.id}</Button>
+        <DeleteBook id={record.id} />
       </div>
     ),
   },
