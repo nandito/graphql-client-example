@@ -1,0 +1,5 @@
+export { default as AddBook } from './add-book/AddBook'
+export { default as BookFormModal } from './book-form-modal/BookFormModal'
+export { default as BookList } from './book-list/BookList'
+export { default as DeleteBook } from './delete-book/DeleteBook'
+export { default as UpdateBook } from './update-book/UpdateBook'

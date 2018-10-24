@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
-import gql from 'graphql-tag'
-import { Query } from 'react-apollo'
-import { Alert, Layout, Spin, Table } from 'antd'
-import AddBook from './components/add-book/AddBook'
-import UpdateBook from './components/update-book/UpdateBook'
-import DeleteBook from './components/delete-book/DeleteBook'
+import { Col, Layout, Row } from 'antd'
+import { AddBook, BookList } from './components'
 import './App.css'
 
 class App extends Component {
@@ -12,19 +8,26 @@ class App extends Component {
     const { Header, Content, Footer } = Layout
 
     return (
-      <Layout>
+      <Layout style={{ display: 'flex', height: '100vh' }}>
         <Header>
-          <h1 style={{ color: 'white' }}>Client Example</h1>
-        </Header>
-        <Layout>
-          <Content style={{ padding: '0 50px' }}>
-            <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
-              <Books />
-
+          <Row type="flex" justify="space-between">
+            <Col>
+              <h1 style={{ color: 'white' }}>Client Example</h1>
+            </Col>
+            <Col>
               <AddBook />
-            </div>
-          </Content>
-        </Layout>
+            </Col>
+          </Row>
+        </Header>
+
+        <Content style={{ background: '#fff', flex: '1 1 auto', margin: '0 50px', padding: '0 24px' }}>
+          <Row style={{ margin: '24px auto'}}>
+            <Col>
+              <BookList />
+            </Col>
+          </Row>
+        </Content>
+
         <Footer style={{ textAlign: 'center' }}>
           Client Example by <a href="https://nandito.info">nandito</a>
         </Footer>
@@ -32,60 +35,5 @@ class App extends Component {
     )
   }
 }
-
-const columns = [
-  {
-    title: 'Author',
-    dataIndex: 'author',
-    key: 'author',
-  },
-  {
-    title: 'Title',
-    dataIndex: 'title',
-    key: 'title',
-  },
-  {
-    title: 'Id',
-    dataIndex: 'id',
-    key: 'id',
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (text, record) => (
-      <div>
-        <UpdateBook book={record} />
-        <DeleteBook id={record.id} />
-      </div>
-    ),
-  },
-]
-
-const Books = () => (
-  <Query query={GET_BOOKS}>
-    {({ loading, error, data }) => {
-      if (loading)
-        return <Spin />
-      
-      if (error)
-        return <Alert message="Something went wrong." type="error" />
-      
-      if (!data.books.length)
-        return <Alert message="There are no books." type="info" />
-
-      return <Table dataSource={data.books} columns={columns} rowKey="id" />
-    }}
-  </Query>
-)
-
-const GET_BOOKS = gql`
-  query getBooks {
-    books {
-      id
-      author
-      title
-    }
-  }
-`
 
 export default App
