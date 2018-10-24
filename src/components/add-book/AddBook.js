@@ -1,18 +1,7 @@
 import React from 'react'
-import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
-import BookFormModal from '../book-form-modal/BookFormModal'
-import { GET_BOOKS } from '../book-list/BookList'
-
-const CREATE_BOOK = gql`
-  mutation createBook($input:BookInput!){
-    createBook(input: $input) {
-      id
-      author
-      title
-    }
-  }
-`
+import { BookFormModal } from '../../components'
+import { CREATE_BOOK, GET_BOOKS } from '../../graphql'
 
 export default () => (
   <Mutation

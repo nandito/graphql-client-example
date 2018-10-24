@@ -1,18 +1,8 @@
 import React from 'react'
-import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import { Alert, Col, Row, Spin, Table } from 'antd'
 import { DeleteBook, UpdateBook } from '../../components'
-
-export const GET_BOOKS = gql`
-  query getBooks {
-    books {
-      id
-      author
-      title
-    }
-  }
-`
+import { GET_BOOKS } from '../../graphql'
 
 const columns = [
   {

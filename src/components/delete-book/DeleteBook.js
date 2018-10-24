@@ -1,17 +1,7 @@
 import React from 'react'
-import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 import { Button } from 'antd'
-
-const DELETE_BOOK = gql`
-mutation deleteBook($id:ID!) {
-  deleteBook(id: $id) {
-    title
-    author
-    id
-  }
-}
-`
+import { DELETE_BOOK } from '../../graphql'
 
 export default ({ id }) => (
   <Mutation mutation={DELETE_BOOK}>
