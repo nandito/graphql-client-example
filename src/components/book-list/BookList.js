@@ -4,7 +4,7 @@ import { Query } from 'react-apollo'
 import { Alert, Col, Row, Spin, Table } from 'antd'
 import { DeleteBook, UpdateBook } from '../../components'
 
-const GET_BOOKS = gql`
+export const GET_BOOKS = gql`
   query getBooks {
     books {
       id
